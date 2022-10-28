@@ -1,3 +1,12 @@
+TITLE: 𝐏𝐀𝐓𝐈𝐄𝐍𝐓 𝐋𝐈𝐒𝐓 𝐌𝐀𝐍𝐀𝐆𝐄𝐌𝐄𝐍𝐓 𝐒𝐘𝐒𝐓𝐄𝐌
+DESCRIPTION Our system aims to help Hospital staffs to easily find, Add the Patient Information.
+PROGRAMMERS:
+AGUSTIN C.TEODORO III
+BREN BAPTISTA
+MARIECEL P. TADAYA
+DIVINE CRYSTAL FAITH LUCAS
+DATE SUBMITTED: 10/29/22
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -83,19 +92,92 @@ namespace PATIENT_MANAGEMENT_SYSTEM_HEALTHCARE
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+       
+ #include <iostream>
+#include <string>
+using namespace std;
 
+template<typename T, size_t n>
+void print_array(T const(&arr)[n]) {
+    for (size_t i = 0; i < n; i++)
+        std::cout << arr[i] << ' ';
+    cout << "\n";
+}
+
+int minIndex(int a[], int i, int j) {
+    if (i == j)
+        return i;
+    int k = minIndex(a, i + 1, j);
+    return (a[i] < a[k]) ? i : k;
+}
+
+void recurSelectionSort(int a[], int n, int index = 0) {
+    if (index == n)
+        return;
+    int k = minIndex(a, index, n - 1);
+    if (k != index)
+        swap(a[k], a[index]);
+    recurSelectionSort(a, n, index + 1);
+}
+
+void iterSelectionSort(int a[], int n) {
+    for (int i = 0; i < n; i++)
+    {
+        int min_index = i;
+        int min_element = a[i];
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[j] < min_element)
+            {
+                min_element = a[j];
+                min_index = j;
+            }
         }
+        swap(a[i], a[min_index]);
+    }
+}
 
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
+int main() {
+    int recurArr[6] = { 100,35, 500, 9, 67, 20 };
+    int iterArr[5] = { 25, 0, 500, 56, 98 };
 
+    cout << "Recursive Selection Sort"  << "\n";
+    print_array(recurArr); // 100 35 500 9 67 20
+    recurSelectionSort(recurArr, 6);
+    print_array(recurArr); // 9 20 35 67 100 500
+
+    cout << "Iterative Selection Sort" << "\n";
+    print_array(iterArr); // 25 0 500 56 98
+    iterSelectionSort(iterArr, 5);
+    print_array(iterArr); // 0 25 56 98 500
+
+void countsort(int arr[],int n,int place){
+
+        int i,freq[range]={0};         //range for integers is 10 as digits range from 0-9
+        int output[n];
+
+        for(i=0;i<n;i++)
+                freq[(arr[i]/place)%range]++;
+
+        for(i=1;i<range;i++)
+                freq[i]+=freq[i-1];
+        
+        for(i=n-1;i>=0;i--){
+                output[freq[(arr[i]/place)%range]-1]=arr[i];
+                freq[(arr[i]/place)%range]--;
         }
+        
+        for(i=0;i<n;i++)
+                arr[i]=output[i];
+}
 
-        private void txtAddress_TextChanged(object sender, EventArgs e)
-        {
+void radixsort(ll arr[],int n,int maxx){            //maxx is the maximum element in the array
 
+        int mul=1;
+        while(maxx){
+                countsort(arr,n,mul);
+                mul*=10;
+                maxx/=10;
         }
     }
 }
