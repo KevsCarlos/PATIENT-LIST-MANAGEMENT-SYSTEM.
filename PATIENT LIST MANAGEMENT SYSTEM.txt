@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PATIENT_MANAGEMENT_SYSTEM_HEALTHCARE
+{
+    public partial class Form1 : Form
+    {
+        DataTable table = new DataTable("table");
+
+        int index;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            table.Columns.Add("Name", Type.GetType("System.String"));
+            table.Columns.Add("ID", Type.GetType("System.String"));
+            table.Columns.Add("Address", Type.GetType("System.String"));
+            table.Columns.Add("Contact No.", Type.GetType("System.String"));
+            dataGridView1.DataSource = table;
+
+
+        }
+
+        private void btnADD_Click(object sender, EventArgs e)
+        {
+            table.Rows.Add(txtName.Text, txtID.Text, txtAddress.Text, txtContactno.Text);
+            MessageBox.Show("Record Added");
+        }
+
+        private void btnDELETE_Click(object sender, EventArgs e)
+        {
+            index = dataGridView1.CurrentCell.RowIndex;
+            dataGridView1.Rows.RemoveAt(index);
+            MessageBox.Show("Item Removed");
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUPDATE_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow newData = dataGridView1.Rows[index];
+            newData.Cells[0].Value = txtName.Text;
+            newData.Cells[1].Value = txtID.Text;
+            newData.Cells[3].Value = txtAddress.Text;
+            newData.Cells[4].Value = txtContactno.Text;
+
+         MessageBox.Show("Record Updated");
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            index = e.RowIndex;
+            DataGridViewRow row = dataGridView1.Rows [index];
+            txtName.Text = row.Cells[0].Value.ToString();
+            txtID.Text = row.Cells[1].Value.ToString();
+            txtAddress.Text = row.Cells[1].Value.ToString();
+            txtContactno.Text = row.Cells[1].Value.ToString();
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
